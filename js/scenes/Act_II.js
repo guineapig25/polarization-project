@@ -332,7 +332,7 @@ function Stage_Angry_Escalation(self, HACK){
                 return(peep._CLASS_=="AngryPeep");
             });
             var angryRatio = angry.length/(peeps.length-1);
-            // angryRatio = 0.95; // HACK TO SKIP
+            angryRatio = 0.95; // HACK TO SKIP
 
             // MORE THAN 66%: BRING IN THE PEACE PROTESTERS
             if(angryRatio>0.5){

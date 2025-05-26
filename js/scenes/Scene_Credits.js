@@ -41,6 +41,12 @@ function Scene_Credits(){
     authorText.x = Game.width / 2 - 240;
     authorText.y = Game.height / 2 + 29;
     c[1].addChild(authorText);
+	var remixText = new PIXI.Text(textStrings["remixed"], {font: "30px Cairo", fill:"#FFFFFF", align: "left"});
+    remixText.anchor.x = 0.0;
+    remixText.anchor.y = 0.0;
+    remixText.x = Game.width / 2 - 240;
+    remixText.y = authorText.y + authorText.height / 2 + 8;
+    c[1].addChild(remixText);
     
     var playtestersText = new PIXI.Text(textStrings["manyThanks"] + "\n", {font: "44px Cairo", fill:"#FFFFFF", align: "right"});
     playtestersText.anchor.x = 1.0;

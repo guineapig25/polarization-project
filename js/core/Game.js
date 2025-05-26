@@ -53,7 +53,6 @@ Game.init = function(HACK){
 			Game.animate();
 		}, function(){}, true);
 	}
-
 };
 
 // UPDATE & ANIMATE

@@ -2,7 +2,7 @@
 ///// TEXT STRINGS ////////////////
 ///////////////////////////////////
 
-var textStrings_EN = {
+var textStrings = {
 	// Act 1
 	"niceHat": "OOH NICE HAT",
 	"outtaHere": "yeah git on outta here",
@@ -65,6 +65,7 @@ var textStrings_EN = {
 	// (credits0001.png)
 	"createdBy": "created by",
 	"NickyCase": "Nicky Case",
+	"remixed": "project remixed by brian, ben, and aneesh",
 
 	// (credits0002.png)
 	"manyThanks": "many thanks to my playtesters:",
