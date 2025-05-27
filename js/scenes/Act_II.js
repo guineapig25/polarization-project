@@ -332,8 +332,10 @@ function Stage_Angry_Escalation(self, HACK){
                 return(peep._CLASS_=="AngryPeep");
             });
             var angryRatio = angry.length/(peeps.length-1);
-            angryRatio = 0.95; // HACK TO SKIP
-
+            if (angryRatio > 0.95) angryRatio = 0.95; // HACK TO SKIP
+            if (angryRatio > 0.01) {
+                window.playerPolarization = angryRatio;
+            }
             // MORE THAN 66%: BRING IN THE PEACE PROTESTERS
             if(angryRatio>0.5){
                 _addProtesters();
@@ -396,7 +398,9 @@ function _chyAngry(d){
             });
             var angriesAfterwards = angry.length+4;
             var angryRatio = angriesAfterwards/(peeps.length-1);
-
+            if (angryRatio > 0.01) {
+                window.playerPolarization = angryRatio;
+            }
             if(angryRatio>=1){
                 d.chyron = textStrings["everyoneHates"];
             }else if(angryRatio>=0.75){

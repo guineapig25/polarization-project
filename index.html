@@ -3,6 +3,19 @@
 		<link rel="stylesheet" href="css/game.css">
 	</head>
 	<body>
+		<!-- Username Overlay -->
+		<div id="username-select" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:2000;background:#222;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+    		<h2 style="color:white;">Enter Your Username</h2>
+    		<input id="username-input" type="text" maxlength="20" style="font-size:2em; padding:10px;">
+    		<button onclick="window.confirmUsername()" style="margin:10px;font-size:2em;">Confirm</button>
+    		<div id="username-error" style="color:red; margin-top:10px; display:none;">Please enter a username.</div>
+		</div>
+    	<!-- Team Selection Overlay -->
+		<div id="team-select" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:1000;background:#222;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+    		<h2 style="color:white;">Choose Your Team</h2>
+			<button onclick="window.selectTeam('green')" style="margin:10px;font-size:2em;background:limegreen;color:white;">Green</button>
+    		<button onclick="window.selectTeam('orange')" style="margin:10px;font-size:2em;background:orange;">Orange</button>
+		</div>
 		<div id="stage"></div>
 		<div id="modal_shade"></div>
 		<div class="overlay" id="warning">
@@ -23,7 +36,9 @@
 		</div>
 	</body>
 </html>
-
+<!-- Add Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 <!-- External Libraries -->
 <script src="js/lib/pixi.min.js"></script>
 <script src="js/lib/howler.js"></script>
@@ -89,7 +104,7 @@
 <script src="js/scenes/Scene_Meta.js"></script>
 
 <!-- Game Scripts -->
-<script>
+<!-- <script>
 Game.stats = false;
 window.onload = function(){
 	try{
@@ -98,7 +113,48 @@ window.onload = function(){
 	}catch(e){
 		document.getElementById("warning").style.display = "block";
 	}
+}; -->
+
+<!-- Firebase Initialization -->
+<script>
+	const firebaseConfig = {
+	apiKey: "AIzaSyDqyK6jPx7zz6uMGrJGgZ_BJj_TSj2dpnw",
+	authDomain: "polarized-loquats.firebaseapp.com",
+	projectId: "polarized-loquats",
+	storageBucket: "polarized-loquats.firebasestorage.app",
+	messagingSenderId: "725463208580",
+	appId: "1:725463208580:web:c2349cdb0f16d23f0768d1",
+	measurementId: "G-64H8GT08BE"
+	};
+	firebase.initializeApp(firebaseConfig);
+	window.db = firebase.firestore();
+</script>
+
+<script>
+window.confirmUsername = function() {
+	var name = document.getElementById('username-input').value.trim();
+	if (!name) {
+		document.getElementById('username-error').style.display = 'block';
+		return;
+	}
+	document.getElementById('username-error').style.display = 'none';
+	window.playerName = name;
+	document.getElementById('username-select').style.display = 'none';
+	document.getElementById('team-select').style.display = 'flex';
+}
+
+window.selectTeam = function(team) {
+    window.playerTeam = team;
+	window.teamIndicator = (team === 'orange') ? 2 : 1; // 1 = green, 2 = orange
+    document.getElementById('team-select').style.display = 'none';
+    // Now start the game:
+    try {
+		Game.init();
+	} catch(e) {
+		document.getElementById("warning").style.display = "block";
+	}
 };
+
 window.SHARE_TEXT = 'همین الان یه بازی خیلی خفن رو بازی کردم'
 window.SHARE_URL = "";
 </script>

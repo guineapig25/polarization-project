@@ -65,7 +65,9 @@ var textStrings = {
 	// (credits0001.png)
 	"createdBy": "created by",
 	"NickyCase": "Nicky Case",
-	"remixed": "project remixed by brian, ben, and aneesh",
+	"remixed": "project remixed by brian",
+	"servered": "firebase server created by aneesh",
+	"designed": "multiplayer designed by brian, aneesh, and ben",
 
 	// (credits0002.png)
 	"manyThanks": "many thanks to my playtesters:",

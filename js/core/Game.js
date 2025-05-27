@@ -16,9 +16,37 @@ Game.width = 960;
 Game.height = 540;
 Game.stats = true;
 
+// GENERATE PLAYER HASH
+Game.generatePlayerHash = function() {
+	const rand = () => Math.random().toString(36).slice(2, 10); // 8 chars
+	return rand() + rand(); // 16-character hash
+}
+
 // INIT
 Game.init = function(HACK){
-
+    // ASSIGN HASH
+    window.playerHash = Game.generatePlayerHash();
+	window.playerMoney = 1000;
+	window.playerPolarization = 0.00;
+    // Send initial user data to Firebase
+    if (window.db && window.playerHash && window.playerName && typeof window.teamIndicator !== "undefined") {
+        window.db.collection('users').doc(window.playerHash).set({
+            id: window.playerHash,
+            money: window.playerMoney,
+            name: window.playerName,
+            polarization_score: window.playerPolarization,
+            team_indicator: window.teamIndicator
+        });
+    }
+	// Update every five seconds
+	setInterval(function() {
+		if (window.db && window.playerHash) {
+			window.db.collection('users').doc(window.playerHash).update({
+				money: window.playerMoney,
+				polarization_score: window.playerPolarization
+			});
+		}
+	}, 3000);
 	// Set up PIXI
 	Game.renderer = new PIXI.WebGLRenderer(Game.width, Game.height);
 	document.querySelector("#stage").appendChild(Game.renderer.view);

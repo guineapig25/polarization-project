@@ -94,6 +94,7 @@ function Camera(scene, options){
 
 		// Take Texture
 		self.takePhoto();
+		window.playerMoney
 
 		// Tell the director
 		if(!options.streaming){

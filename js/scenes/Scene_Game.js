@@ -103,6 +103,23 @@ function Scene_Game(){
         }, 3000);
     }
 
+    // USERNAME AND MONEY DISPLAY
+    self.userMoneyText = new PIXI.Text(
+        (window.playerName || "Player") + ": $" + (window.playerMoney),
+        {
+            fontFamily: 'Arial',
+            fontSize: 28,
+            fill: '#ffffff',
+            stroke: '#000000',
+            strokeThickness: 4,
+            align: 'left'
+        }
+    );
+    self.userMoneyText.anchor.set(0, 0); // top-left
+    self.userMoneyText.x = 20;
+    self.userMoneyText.y = 20;
+    Game.stage.addChild(self.userMoneyText);
+
     // UPDATE
     self.update = function(){
         
@@ -137,6 +154,9 @@ function Scene_Game(){
                 self.timerActive = false;
                 self.showGameOver();
             }
+        }
+        if (self.userMoneyText) {
+            self.userMoneyText.text = (window.playerName || "Player") + ": $" + (window.playerMoney);
         }
     };
 

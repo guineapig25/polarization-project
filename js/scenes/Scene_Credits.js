@@ -45,8 +45,20 @@ function Scene_Credits(){
     remixText.anchor.x = 0.0;
     remixText.anchor.y = 0.0;
     remixText.x = Game.width / 2 - 240;
-    remixText.y = authorText.y + authorText.height / 2 + 8;
+    remixText.y = authorText.y + authorText.height / 2 + 12;
     c[1].addChild(remixText);
+	var serverText = new PIXI.Text(textStrings["servered"], {font: "30px Cairo", fill:"#FFFFFF", align: "left"});
+    serverText.anchor.x = 0.0;
+    serverText.anchor.y = 0.0;
+    serverText.x = Game.width / 2 - 240;
+    serverText.y = remixText.y + remixText.height / 2 + 12;
+    c[1].addChild(serverText);
+	var designText = new PIXI.Text(textStrings["designed"], {font: "30px Cairo", fill:"#FFFFFF", align: "left"});
+    designText.anchor.x = 0.0;
+    designText.anchor.y = 0.0; 
+    designText.x = Game.width / 2 - 240;
+    designText.y = serverText.y + serverText.height / 2 + 12;
+    c[1].addChild(designText);
     
     var playtestersText = new PIXI.Text(textStrings["manyThanks"] + "\n", {font: "44px Cairo", fill:"#FFFFFF", align: "right"});
     playtestersText.anchor.x = 1.0;
