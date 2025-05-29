@@ -156,7 +156,7 @@ function Scene_Game(){
             }
         }
         if (self.userMoneyText) {
-            self.userMoneyText.text = (window.playerName || "Player") + ": $" + (window.playerMoney);
+            self.userMoneyText.text = (window.playerName || "Player") + ": $" + Math.round(window.playerMoney || 0);
         }
     };
 

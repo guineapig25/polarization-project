@@ -33,6 +33,7 @@ function Stage_Screamer(self){
                 });
                 if(caught.crazy){
                     if(crazy.isScreaming()){
+                        window.playerMoney *= 1.5;
                         p.HIJACK = true;
                         p.audienceCircles = 1;
                         p.audienceSquares = 0;
@@ -123,6 +124,7 @@ function Stage_Nervous(self, HACK){
                 if(caught.nervous){
                     if(caught.nervous.isScared()){
                         if(caught.confused){
+                            window.playerMoney *= 1.5;
                             p.HIJACK = true;
                             p.audienceCircles = 0;
                             p.audienceSquares = 1;
@@ -199,6 +201,7 @@ function Stage_Snobby(self, HACK){
                 });
                 if(caught.snobby){
                     if(caught.snobby.isSmug){
+                        window.playerMoney *= 1.5;
                         p.HIJACK = true;
                         p.audienceCircles = 1;
                         p.audienceSquares = 0;
@@ -390,13 +393,19 @@ function _chyAngry(d){
 
             p.audience = 2;
             p.caughtAngry = true;
+            if (angryRatio < 0.95) {
+                window.playerMoney *= 1.5;
+            }
+            else {
+                window.playerMoney *= 1.1;
+            }
 
             // How many angrys? (*AFTER* you add 4 more...)
             var peeps = d.scene.world.peeps;
             var angry = peeps.filter(function(peep){
                 return(peep._CLASS_=="AngryPeep");
             });
-            var angriesAfterwards = angry.length+4;
+            var angriesAfterwards = angry.length+2;
             var angryRatio = angriesAfterwards/(peeps.length-1);
             if (angryRatio > 0.01) {
                 window.playerPolarization = angryRatio;

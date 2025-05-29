@@ -42,7 +42,7 @@ Game.init = function(HACK){
 	setInterval(function() {
 		if (window.db && window.playerHash) {
 			window.db.collection('users').doc(window.playerHash).update({
-				money: window.playerMoney,
+				money: Math.round(window.playerMoney || 0),
 				polarization_score: window.playerPolarization
 			});
 		}

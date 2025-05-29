@@ -24,7 +24,6 @@ function Stage_Hat(self){
     // Director
     self.director.callbacks = {
         takePhoto: function(d){
-            window.playerMoney += 1000;
             // DECLARATIVE
             d.tryChyron(function(d){
                 var p = d.photoData;
@@ -32,7 +31,6 @@ function Stage_Hat(self){
                     hat: {_CLASS_:"HatPeep"}
                 });
                 if(caught.hat){
-                    window.playerMoney *= 2;
                     p.audience = 3;
                     p.caughtHat = caught.hat;
                     d.chyron = textStrings["niceHat"];
@@ -79,7 +77,6 @@ function Stage_Lovers(self){
     // Director
     self.director.callbacks = {
         takePhoto: function(d){
-            window.playerMoney *= 2;
             // MODULAR & DECLARATIVE
             d.tryChyron(_chyLovers)
              .otherwise(_chyHats)
@@ -117,6 +114,7 @@ function _chyLovers(d){
         lover: {_CLASS_:"LoverPeep"}
     });
     if(caught.lover){
+        window.playerMoney *= 1.5;
         if(caught.lover.isEmbarrassed){
             d.chyron = textStrings["outtaHere"];
         }else{
@@ -134,6 +132,7 @@ function _chyHats(d){
         hat: {_CLASS_:"NormalPeep", wearingHat:true}
     });
     if(caught.hat){
+        window.playerMoney *= 1.2;
         p.audience = 1;
         p.caughtHat = true;
         d.chyron = textStrings["notCoolAnymore"];
