@@ -393,12 +393,6 @@ function _chyAngry(d){
 
             p.audience = 2;
             p.caughtAngry = true;
-            if (angryRatio < 0.95) {
-                window.playerMoney *= 1.5;
-            }
-            else {
-                window.playerMoney *= 1.1;
-            }
 
             // How many angrys? (*AFTER* you add 4 more...)
             var peeps = d.scene.world.peeps;
@@ -407,6 +401,12 @@ function _chyAngry(d){
             });
             var angriesAfterwards = angry.length+2;
             var angryRatio = angriesAfterwards/(peeps.length-1);
+            if (angryRatio < 0.95) {
+                window.playerMoney *= 1.75;
+            }
+            else if (angryRatio >= 0.95) {
+                window.playerMoney *= 1.02;
+            }
             if (angryRatio > 0.01) {
                 window.playerPolarization = angryRatio;
             }
